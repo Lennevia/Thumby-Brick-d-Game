@@ -26,6 +26,7 @@ padSprite.y = 36
 lose = False  
 gameScore = 0 # keeps track of the number of bricks collided with
 loopCtr = 0 # used to control the speed of the ball
+thumby.display.setFPS(35) # standardize display to 30 frames per second
 
 # Brick class to keep track of placement, collisions and delete (move off screen) state
 class Brick:
@@ -74,9 +75,7 @@ thumby.display.drawLine(0, 8, 62, 8, 1)
 thumby.display.drawText("Hit Ball &", 0, 10, 1)
 thumby.display.drawText("Break Bricks", 0, 19, 1)
 thumby.display.update()
-
 time.sleep(4) # delay game for a few seconds so player can read instructions
-
 
 # Begin main game loop
 while(1):
@@ -120,10 +119,6 @@ while(1):
         ballDir = 1
     elif ballSprite.y <= 0 and ballDir == 3: 
         ballDir = 0
-    elif (ballSprite.y + 4) >= 40 and ballDir == 1:  # bottom of screen 
-        ballDir = 2
-    elif (ballSprite.y + 4) >= 40 and ballDir == 0: 
-        ballDir = 3
     
     # DETECT BALL COLLISION WITH MOVING PAD
     if (((ballSprite.y + 4) == padSprite.y) and ((ballSprite.x<= padSprite.x + 10) and (ballSprite.x + 4 >= padSprite.x))):
@@ -204,6 +199,3 @@ while(1):
 
     # UPDATE SCREEN
     thumby.display.update()
-    
-    
-    
